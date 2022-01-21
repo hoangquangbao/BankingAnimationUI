@@ -21,7 +21,41 @@ struct Home: View {
 
     ]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            
+            HStack{
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.white)
+                        .font(.title2)
+                }
+                .hLeading()
+                
+                Button {
+                    
+                } label: {
+                    Image("Avatar")
+                        .resizable()
+                        //.aspectRatio(contentMode: .fill)
+                        //.scaledToFill()
+                        .frame(width: 45, height: 45)
+                        .clipShape(Circle())
+                        .background(
+                            Circle()
+                                .stroke(.white, lineWidth: 1)
+                        )
+                }
+                .hTrailing()
+            }
+            .padding()
+            
+        }
+        .vTop()
+        .hCenter()
+        .background(Color("BG"))
     }
 }
 
