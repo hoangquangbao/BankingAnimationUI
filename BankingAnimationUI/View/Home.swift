@@ -50,9 +50,15 @@ struct Home: View {
                 }
                 .hTrailing()
             }
-            .padding()
+            .padding(.horizontal)
             
             CreditCard()
+            
+            MiddleBar()
+            
+            Color(.black)
+                .cornerRadius(35)
+                .edgesIgnoringSafeArea(.bottom)
             
         }
         .vTop()
@@ -157,6 +163,30 @@ struct Home: View {
 //        .clipped()
 //        .padding()
 //        .hCenter()
+    }
+    
+    // MARK: MiddleBar
+    func MiddleBar() -> some View {
+        
+        HStack{
+            
+            Text("Choose a color")
+                .foregroundColor(.white)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .hLeading()
+            
+            Button {
+                
+            } label: {
+                
+                Text("View all")
+                    .font(.title3)
+                    .foregroundColor(Color("Pink"))
+                    .underline()
+            }
+        }
+        .padding(.horizontal)
     }
 }
 
