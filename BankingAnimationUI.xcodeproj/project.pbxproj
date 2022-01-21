@@ -16,6 +16,7 @@
 		06811B04279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B03279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift */; };
 		06811B14279A51FC006BFB6F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B13279A51FC006BFB6F /* Home.swift */; };
 		06811B16279A521F006BFB6F /* ColorGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B15279A521F006BFB6F /* ColorGrid.swift */; };
+		06811B18279AC1A3006BFB6F /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B17279AC1A3006BFB6F /* CustomCorner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		06811B03279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingAnimationUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		06811B13279A51FC006BFB6F /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		06811B15279A521F006BFB6F /* ColorGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGrid.swift; sourceTree = "<group>"; };
+		06811B17279AC1A3006BFB6F /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				06811B13279A51FC006BFB6F /* Home.swift */,
+				06811B17279AC1A3006BFB6F /* CustomCorner.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06811AE9279A4DFE006BFB6F /* ContentView.swift in Sources */,
+				06811B18279AC1A3006BFB6F /* CustomCorner.swift in Sources */,
 				06811B14279A51FC006BFB6F /* Home.swift in Sources */,
 				06811AE7279A4DFE006BFB6F /* BankingAnimationUIApp.swift in Sources */,
 				06811B16279A521F006BFB6F /* ColorGrid.swift in Sources */,

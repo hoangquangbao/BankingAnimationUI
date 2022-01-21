@@ -50,19 +50,23 @@ struct Home: View {
                 }
                 .hTrailing()
             }
-            .padding(.horizontal)
+            .padding([.horizontal, .top])
+            .padding(.bottom, 5)
             
             CreditCard()
             
             MiddleBar()
             
             Color(.black)
-                .cornerRadius(35)
-                .edgesIgnoringSafeArea(.bottom)
+                //.cornerRadius(35)
+                //.edgesIgnoringSafeArea(.bottom)
+                .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 40))
+                .padding(.top)
             
         }
         .vTop()
         .hCenter()
+        .edgesIgnoringSafeArea(.bottom)
         .background(Color("BG"))
     }
     
