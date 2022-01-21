@@ -14,6 +14,8 @@
 		06811AF8279A4E00006BFB6F /* BankingAnimationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811AF7279A4E00006BFB6F /* BankingAnimationUITests.swift */; };
 		06811B02279A4E00006BFB6F /* BankingAnimationUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B01279A4E00006BFB6F /* BankingAnimationUIUITests.swift */; };
 		06811B04279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B03279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift */; };
+		06811B14279A51FC006BFB6F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B13279A51FC006BFB6F /* Home.swift */; };
+		06811B16279A521F006BFB6F /* ColorGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06811B15279A521F006BFB6F /* ColorGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		06811AFD279A4E00006BFB6F /* BankingAnimationUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankingAnimationUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06811B01279A4E00006BFB6F /* BankingAnimationUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingAnimationUIUITests.swift; sourceTree = "<group>"; };
 		06811B03279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingAnimationUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		06811B13279A51FC006BFB6F /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		06811B15279A521F006BFB6F /* ColorGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,9 @@
 		06811AE5279A4DFE006BFB6F /* BankingAnimationUI */ = {
 			isa = PBXGroup;
 			children = (
+				06811B12279A51DF006BFB6F /* ViewModel */,
+				06811B11279A51D6006BFB6F /* Model */,
+				06811B10279A51D0006BFB6F /* View */,
 				06811AE6279A4DFE006BFB6F /* BankingAnimationUIApp.swift */,
 				06811AE8279A4DFE006BFB6F /* ContentView.swift */,
 				06811AEA279A4E00006BFB6F /* Assets.xcassets */,
@@ -125,6 +132,29 @@
 				06811B03279A4E00006BFB6F /* BankingAnimationUIUITestsLaunchTests.swift */,
 			);
 			path = BankingAnimationUIUITests;
+			sourceTree = "<group>";
+		};
+		06811B10279A51D0006BFB6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06811B13279A51FC006BFB6F /* Home.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		06811B11279A51D6006BFB6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06811B15279A521F006BFB6F /* ColorGrid.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		06811B12279A51DF006BFB6F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +288,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				06811AE9279A4DFE006BFB6F /* ContentView.swift in Sources */,
+				06811B14279A51FC006BFB6F /* Home.swift in Sources */,
 				06811AE7279A4DFE006BFB6F /* BankingAnimationUIApp.swift in Sources */,
+				06811B16279A521F006BFB6F /* ColorGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
