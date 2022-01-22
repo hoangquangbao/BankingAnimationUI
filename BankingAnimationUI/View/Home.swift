@@ -65,7 +65,7 @@ struct Home: View {
                 
                 CreditCard()
                 // MARK: 3D Rotation
-                    .rotation3DEffect(.init(degrees: animations[0] ? 0 : -200), axis: (x: 1, y: 1, z: 0), anchor: .center)
+                    .rotation3DEffect(.init(degrees: animations[0] ? 0 : -200), axis: (x: 1, y: 0, z: 0), anchor: .center)
                     .offset(y: animations[0] ? 0 : -maxY)
 
             }
@@ -197,6 +197,7 @@ struct Home: View {
                 .font(.title3)
                 .fontWeight(.semibold)
                 .hLeading()
+                .offset(x: animations[1] ? 0 : -200)
             
             Button {
                 
@@ -207,6 +208,8 @@ struct Home: View {
                     .foregroundColor(Color("Pink"))
                     .underline()
             }
+            .offset(x: animations[1] ? 0 : 200)
+
         }
         .padding(.horizontal)
     }
@@ -215,8 +218,17 @@ struct Home: View {
     func animateScreen() {
         
         // First Animation of Credit Card
-        withAnimation(.interactiveSpring(response: 1.3, dampingFraction: 0.7, blendDuration: 0.7)) {
+        withAnimation(.interactiveSpring(response: 1.3, dampingFraction: 0.7, blendDuration: 0.7).delay(0.5)) {
             animations[0] = true
+        }
+        
+        // Second Animating the Hstack with View All Button
+        withAnimation(.easeInOut(duration: 0.7)) {
+            animations[1] = true
+        }
+        
+        withAnimation(.easeIn(duration: 0.7)) {
+            animations[1] = true
         }
     }
 }
