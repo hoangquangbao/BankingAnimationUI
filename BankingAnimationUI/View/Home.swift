@@ -20,6 +20,11 @@ struct Home: View {
         ColorGrid(hexValue: "#FFE272", color: Color("Yellow"))
 
     ]
+    
+    // MARK: Animation Properties
+    // Instead of making each boolean for separate animation making it as an array to void multiple lines of code.
+    @State var animations: [Bool] = Array(repeating: false, count: 10)
+    
     var body: some View {
         VStack{
             
@@ -53,8 +58,15 @@ struct Home: View {
             .padding([.horizontal, .top])
             .padding(.bottom, 5)
             
-            CreditCard()
-            
+            // MARK: Using Geometry Reader for Setting Offset
+            GeometryReader{proxy in
+                
+                let maxY = proxy.frame(in: .global).maxY
+                
+                CreditCard()
+                    .offset(y: animations[0] ? 0 : -maxY)
+            }
+            .frame(height: 250)
             MiddleBar()
             
             Color(.black)
@@ -68,6 +80,9 @@ struct Home: View {
         .hCenter()
         .edgesIgnoringSafeArea(.bottom)
         .background(Color("BG"))
+        .onAppear {
+            animateScreen()
+        }
     }
     
     // MARK: Animated Credit Card
@@ -88,7 +103,7 @@ struct Home: View {
                             .frame(width: 5, height: 5)
                     }
                     
-                    Text("7864")
+                    Text("8684")
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                 }
@@ -122,7 +137,7 @@ struct Home: View {
                 .offset(x: 150, y: -150)
         }
         .clipped()
-        .frame(height: 250)
+//        .frame(height: 250)
         .padding()
         
 //        ZStack{
@@ -191,6 +206,15 @@ struct Home: View {
             }
         }
         .padding(.horizontal)
+    }
+    
+    // MARK: AnimatingScreen
+    func animateScreen() {
+        
+        // First Animation of Credit Card
+        withAnimation(.interactiveSpring(response: 1.3, dampingFraction: 0.7, blendDuration: 0.7)) {
+            animations[0] = true
+        }
     }
 }
 
