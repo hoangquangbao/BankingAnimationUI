@@ -64,7 +64,10 @@ struct Home: View {
                 let maxY = proxy.frame(in: .global).maxY
                 
                 CreditCard()
+                // MARK: 3D Rotation
+                    .rotation3DEffect(.init(degrees: animations[0] ? 0 : -200), axis: (x: 1, y: 1, z: 0), anchor: .center)
                     .offset(y: animations[0] ? 0 : -maxY)
+
             }
             .frame(height: 250)
             MiddleBar()
