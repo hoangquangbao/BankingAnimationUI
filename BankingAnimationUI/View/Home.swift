@@ -96,7 +96,8 @@ struct Home: View {
                         ForEach(colors){colorGrid in
                             
                             // MARK: Hiding the source Onces
-                            if !colorGrid.addToGrid{
+//                            if !colorGrid.addToGrid{
+                            if !colorGrid.removeFromView{
                              
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(colorGrid.color)
@@ -299,6 +300,12 @@ struct Home: View {
                         }){
                             withAnimation {
                                 colors[index].showText = true
+                            }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.11) {
+                                withAnimation {
+                                    colors[index].removeFromView = true
+                                }
                             }
                         }
                     }
