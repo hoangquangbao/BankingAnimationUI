@@ -70,13 +70,26 @@ struct Home: View {
 
             }
             .frame(height: 250)
+            
             MiddleBar()
             
-            Color(.black)
-                //.cornerRadius(35)
-                //.edgesIgnoringSafeArea(.bottom)
-                .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 40))
-                .padding(.top)
+            GeometryReader{proxy in
+                
+                let size = proxy.size
+                
+                ZStack{
+                    
+                    Color(.black)
+                        //.cornerRadius(35)
+                        //.edgesIgnoringSafeArea(.bottom)
+                        .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 40))
+                        .frame(height: animations[2] ? nil : 0)
+                        .vBottom()
+                }
+//                .hCenter()
+//                .vCenter()
+            }
+            .padding(.top)
             
         }
         .vTop()
@@ -218,7 +231,7 @@ struct Home: View {
     func animateScreen() {
         
         // First Animation of Credit Card
-        withAnimation(.interactiveSpring(response: 1.3, dampingFraction: 0.7, blendDuration: 0.7).delay(0.5)) {
+        withAnimation(.interactiveSpring(response: 2, dampingFraction: 0.5, blendDuration: 0.5).delay(0.5)) {
             animations[0] = true
         }
         
@@ -227,8 +240,13 @@ struct Home: View {
             animations[1] = true
         }
         
-        withAnimation(.easeIn(duration: 0.7)) {
-            animations[1] = true
+//        withAnimation(.easeIn(duration: 0.7)) {
+//            animations[1] = true
+//        }
+        
+        // Third Animation making the Bottom to Slide up eventually
+        withAnimation(.interactiveSpring(response: 2, dampingFraction: 0.5, blendDuration: 0.5).delay(0.5)) {
+            animations[2] = true
         }
     }
 }
