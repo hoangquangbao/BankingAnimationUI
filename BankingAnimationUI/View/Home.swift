@@ -65,7 +65,7 @@ struct Home: View {
                 
                 CreditCard()
                 // MARK: 3D Rotation
-                    .rotation3DEffect(.init(degrees: animations[0] ? 0 : -200), axis: (x: 1, y: 0, z: 0), anchor: .center)
+                    .rotation3DEffect(.init(degrees: animations[0] ? 0 : -200), axis: (x: 1, y: 1, z: 0), anchor: .center)
                     .offset(y: animations[0] ? 0 : -maxY)
 
             }
@@ -85,6 +85,29 @@ struct Home: View {
                         .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 40))
                         .frame(height: animations[2] ? nil : 0)
                         .vBottom()
+                    
+                    ZStack{
+                        
+                        // MARK: Intial Grid View
+                        ForEach(colors){colorGrid in
+                            
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(colorGrid.color)
+                                .frame(width: 150, height: animations[3] ? 60 : 150)
+                        }
+                    }
+                    // MARK: Applying Opacity with Scale Animation
+                    // To Avoid this Creating with scale and hiding it
+                    // So that it will look like a BG the whole stack is Applying Opacity Animation
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color("BG"))
+                            .frame(width: 150, height: animations[3] ? 60 : 150)
+                            .opacity(animations[3] ? 0 : 1)
+
+                    )
+                    // Scale Effect
+                    .scaleEffect(animations[3] ? 1 : 2.3)
                 }
 //                .hCenter()
 //                .vCenter()
@@ -245,8 +268,13 @@ struct Home: View {
 //        }
         
         // Third Animation making the Bottom to Slide up eventually
-        withAnimation(.interactiveSpring(response: 2, dampingFraction: 0.5, blendDuration: 0.5).delay(0.5)) {
+        withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5).delay(0.5)) {
             animations[2] = true
+        }
+        
+        // Third Animation Applying Opacity with scale animation for Stack Grid Colors
+        withAnimation(.easeInOut(duration: 1.8)) {
+            animations[3] = true
         }
     }
 }
