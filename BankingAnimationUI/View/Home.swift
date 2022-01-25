@@ -95,13 +95,17 @@ struct Home: View {
                         // MARK: Intial Grid View
                         ForEach(colors){colorGrid in
                             
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(colorGrid.color)
-                                .frame(width: 150, height: animations[3] ? 60 : 150)
-                                .matchedGeometryEffect(id: colorGrid.id, in: animation)
-                
-                            // MARK: Rotating Cards
-                                .rotationEffect(.init(degrees: colorGrid.rotateCards ? 180 : 0))
+                            // MARK: Hiding the source Onces
+                            if !colorGrid.addToGrid{
+                             
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(colorGrid.color)
+                                    .frame(width: 150, height: animations[3] ? 60 : 150)
+                                    .matchedGeometryEffect(id: colorGrid.id, in: animation)
+                    
+                                // MARK: Rotating Cards
+                                    .rotationEffect(.init(degrees: colorGrid.rotateCards ? 180 : 0))
+                            }
                         }
                     }
                     // MARK: Applying Opacity with Scale Animation
@@ -132,7 +136,9 @@ struct Home: View {
  
                         }
                     }
+                    .padding(.top, 40)
                 }
+                .cornerRadius(40)
             }
             .padding(.top)
             
@@ -310,6 +316,7 @@ struct Home: View {
                 .foregroundColor(.white)
                 .hLeading()
                 .padding([.horizontal, .top])
+                .padding(.horizontal)
                 .opacity(colorGrid.showText ? 1 : 0)
         }
     }
