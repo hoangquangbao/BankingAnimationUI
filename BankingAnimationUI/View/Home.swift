@@ -94,6 +94,9 @@ struct Home: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(colorGrid.color)
                                 .frame(width: 150, height: animations[3] ? 60 : 150)
+                            
+                            // MARK: Rotating Cards
+                                .rotationEffect(.init(degrees: colorGrid.rotateCards ? 180 : 0))
                         }
                     }
                     // MARK: Applying Opacity with Scale Animation
@@ -107,7 +110,7 @@ struct Home: View {
 
                     )
                     // Scale Effect
-                    .scaleEffect(animations[3] ? 1 : 2.3)
+                    .scaleEffect(animations[3] ? 1 : 2.5)
                 }
 //                .hCenter()
 //                .vCenter()
@@ -263,10 +266,6 @@ struct Home: View {
             animations[1] = true
         }
         
-//        withAnimation(.easeIn(duration: 0.7)) {
-//            animations[1] = true
-//        }
-        
         // Third Animation making the Bottom to Slide up eventually
         withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5).delay(0.5)) {
             animations[2] = true
@@ -275,6 +274,26 @@ struct Home: View {
         // Third Animation Applying Opacity with scale animation for Stack Grid Colors
         withAnimation(.easeInOut(duration: 1.8)) {
             animations[3] = true
+        }
+        
+        // Final Grid Forming Animation
+        for index in colors.indices{
+            
+            // Animating after the opacity animation has Finished its job
+            // Rotating One card another with a time delay of 0.1sec
+            let delay: Double = (0.9 + (Double(index)*0.1))
+            
+            // Last card is rotating first since we're putting in ZStack
+            // To avoid this recalulate index from back
+            // Ta lấy chỉ số cuối cùng để card màu cuối cùng sẽ được quay đầu tiên
+            let backIndex = ((colors.count - 1) - index)
+            
+            withAnimation(.easeInOut(duration: delay)) {
+//                colors[index].rotateCards = true
+                colors[backIndex].rotateCards = true
+            }
+            
+
         }
     }
 }
