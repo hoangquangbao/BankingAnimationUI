@@ -25,6 +25,9 @@ struct Home: View {
     // Instead of making each boolean for separate animation making it as an array to void multiple lines of code.
     @State var animations: [Bool] = Array(repeating: false, count: 10)
     
+    // MatchedGeometry Namespace
+    @Namespace var animation
+    
     var body: some View {
         VStack{
             
@@ -70,7 +73,7 @@ struct Home: View {
 
             }
             .frame(height: 250)
-            
+        
             MiddleBar()
             
             GeometryReader{proxy in
@@ -114,6 +117,19 @@ struct Home: View {
                 }
 //                .hCenter()
 //                .vCenter()
+                
+                // MARK: ScrollView with Color Grids
+                ScrollView(.vertical, showsIndicators: false){
+                    
+                    let colums = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
+                    LazyVGrid(columns: colums, spacing: 15) {
+                        
+                        ForEach(colors){colorGrid in
+                            
+                            GridCardView(colorGrid: colorGrid)
+                        }
+                    }
+                }
             }
             .padding(.top)
             
@@ -127,7 +143,7 @@ struct Home: View {
         }
     }
     
-    // MARK: Animated Credit Card
+    // MARK: - Animated Credit Card
     @ViewBuilder
     func CreditCard() -> some View {
         
@@ -226,7 +242,7 @@ struct Home: View {
 //        .hCenter()
     }
     
-    // MARK: MiddleBar
+    // MARK: - MiddleBar
     func MiddleBar() -> some View {
         
         HStack{
@@ -251,6 +267,47 @@ struct Home: View {
 
         }
         .padding(.horizontal)
+    }
+    
+    // MARK: - Grid Card View
+    @ViewBuilder
+    func GridCardView(colorGrid: ColorGrid) -> some View {
+        
+        VStack{
+            
+            if colorGrid.addToGrid{
+                
+                // Displaying with matched Geometry Effect
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(colorGrid.color)
+                    .frame(width: 150, height: 60)
+                    .matchedGeometryEffect(id: colorGrid.id, in: animation)
+                
+                // When Animated Grid Card is Displayed Displaying the Color Text
+                    .onAppear {
+                        if let index = colors.firstIndex(where: { color in
+                            return color.id == colorGrid.id
+                        }){
+                            withAnimation {
+                                colors[index].showText = true
+                            }
+                        }
+                    }
+            }
+//            else {
+//                RoundedRectangle(cornerRadius: 10)
+//                    .fill(.clear)
+//                    .frame(width: 150, height: 60)
+//            }
+            
+            Text(colorGrid.hexValue)
+                .font(.caption)
+                .fontWeight(.light)
+                .foregroundColor(.white)
+                .hLeading()
+                .padding([.horizontal, .top])
+                .opacity(colorGrid.showText ? 1 : 0)
+        }
     }
     
     // MARK: AnimatingScreen
@@ -293,7 +350,14 @@ struct Home: View {
                 colors[backIndex].rotateCards = true
             }
             
-
+            // After rotation adding it to grid view one after another
+            // Since .delay() will not work on if...else
+            // So using DispathQueue delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                withAnimation {
+                    colors[backIndex].addToGrid = true
+                }
+            }
         }
     }
 }
