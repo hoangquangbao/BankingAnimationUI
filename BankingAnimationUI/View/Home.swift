@@ -28,6 +28,9 @@ struct Home: View {
     // MatchedGeometry Namespace
     @Namespace var animation
     
+    // Card Color
+    @State var selectedColor: Color = Color("Pink")
+    
     var body: some View {
         VStack{
             
@@ -160,7 +163,7 @@ struct Home: View {
         ZStack{
 
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color("Pink"))
+                .fill(selectedColor)
             
             VStack{
                 
@@ -307,6 +310,12 @@ struct Home: View {
                                     colors[index].removeFromView = true
                                 }
                             }
+                        }
+                    }
+                // Choose a color
+                    .onTapGesture {
+                        withAnimation {
+                            selectedColor = colorGrid.color
                         }
                     }
             }
