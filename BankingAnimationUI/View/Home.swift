@@ -85,6 +85,7 @@ struct Home: View {
                     Color(.black)
                         //.cornerRadius(35)
                         //.edgesIgnoringSafeArea(.bottom)
+                        // Không sử dụng 2 câu lệnh trên vì để applying animation for background
                         .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 40))
                         .frame(height: animations[2] ? nil : 0)
                         .vBottom()
@@ -97,7 +98,8 @@ struct Home: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(colorGrid.color)
                                 .frame(width: 150, height: animations[3] ? 60 : 150)
-                            
+                                .matchedGeometryEffect(id: colorGrid.id, in: animation)
+                
                             // MARK: Rotating Cards
                                 .rotationEffect(.init(degrees: colorGrid.rotateCards ? 180 : 0))
                         }
@@ -127,6 +129,7 @@ struct Home: View {
                         ForEach(colors){colorGrid in
                             
                             GridCardView(colorGrid: colorGrid)
+ 
                         }
                     }
                 }
@@ -282,7 +285,7 @@ struct Home: View {
                     .fill(colorGrid.color)
                     .frame(width: 150, height: 60)
                     .matchedGeometryEffect(id: colorGrid.id, in: animation)
-                
+
                 // When Animated Grid Card is Displayed Displaying the Color Text
                     .onAppear {
                         if let index = colors.firstIndex(where: { color in
@@ -294,11 +297,12 @@ struct Home: View {
                         }
                     }
             }
-//            else {
-//                RoundedRectangle(cornerRadius: 10)
-//                    .fill(.clear)
-//                    .frame(width: 150, height: 60)
-//            }
+            else {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.clear)
+                    .frame(width: 150, height: 60)
+
+            }
             
             Text(colorGrid.hexValue)
                 .font(.caption)
@@ -329,7 +333,7 @@ struct Home: View {
         }
         
         // Third Animation Applying Opacity with scale animation for Stack Grid Colors
-        withAnimation(.easeInOut(duration: 1.8)) {
+        withAnimation(.easeInOut(duration: 0.3)) {
             animations[3] = true
         }
         
@@ -338,7 +342,7 @@ struct Home: View {
             
             // Animating after the opacity animation has Finished its job
             // Rotating One card another with a time delay of 0.1sec
-            let delay: Double = (0.9 + (Double(index)*0.1))
+            let delay: Double = (0.5 + (Double(index)*0.1))
             
             // Last card is rotating first since we're putting in ZStack
             // To avoid this recalulate index from back
